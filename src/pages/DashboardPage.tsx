@@ -1,5 +1,12 @@
+import { LinearChart } from "@/components";
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return (
+    <div className="flex flex-col gap-8">
+      {/* <PieChart /> */}
+      <LinearChart />
+    </div>
+  );
 };
 
 export default DashboardPage;

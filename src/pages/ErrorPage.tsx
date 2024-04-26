@@ -9,7 +9,7 @@ const ErrorPage = () => {
       <p className="font-bold text-3xl text-red-400">
         {isRouteErrorResponse(error)
           ? "This page does not exist."
-          : "An unexpected error occurred."}
+          : "An unexpected error occurred. Try to reload this page"}
       </p>
     </div>
   );
