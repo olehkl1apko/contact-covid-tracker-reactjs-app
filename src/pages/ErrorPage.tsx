@@ -1,5 +1,18 @@
+import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+
 const ErrorPage = () => {
-  return <div>ErrorPage</div>;
+  const error = useRouteError();
+
+  return (
+    <div className="flex flex-col gap-5 items-center justify-center w-screen h-screen">
+      <h1 className="font-bold text-6xl text-red-700">Oops</h1>
+      <p className="font-bold text-3xl text-red-400">
+        {isRouteErrorResponse(error)
+          ? "This page does not exist."
+          : "An unexpected error occurred."}
+      </p>
+    </div>
+  );
 };
 
 export default ErrorPage;
