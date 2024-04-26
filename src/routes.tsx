@@ -4,6 +4,7 @@ import { Layout } from "./components";
 import ErrorPage from "./pages/ErrorPage";
 import ContactsPage from "./pages/ContactsPage";
 import DashboardPage from "./pages/DashboardPage";
+import MapPage from "./pages/MapPage";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <DashboardPage /> },
+      { path: "map", element: <MapPage /> },
       { path: "contacts", element: <ContactsPage /> },
     ],
   },
