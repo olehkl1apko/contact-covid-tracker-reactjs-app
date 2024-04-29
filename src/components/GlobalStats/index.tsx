@@ -23,7 +23,7 @@ const GlobalStats: FC<CovidDataProps> = ({ data }) => {
       {stats.map(({ name, value }) => (
         <Fragment key={name}>
           <p className="mb-4">
-            <span className="text-rose-700 font-bold">{name}:</span>{" "}
+            <span className="text-rose-700 font-bold">{name}: </span>
             <span>{value.toLocaleString()}</span>
           </p>
           <Divider />

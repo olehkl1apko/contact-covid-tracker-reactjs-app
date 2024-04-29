@@ -1,5 +1,4 @@
-import { LinearChart, PieChartCmp } from "@/components";
-import GlobalStats from "@/components/GlobalStats";
+import { GlobalStats, LinearChart, PieChartCmp } from "@/components";
 
 import { useGetGlobalStats } from "@/hooks/useGetGlobalStats";
 import ErrorPage from "./ErrorPage";
