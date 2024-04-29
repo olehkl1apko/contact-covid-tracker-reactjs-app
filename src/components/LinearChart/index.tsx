@@ -1,10 +1,10 @@
 import { useGetCountries } from "@/hooks/useGetCountries";
 
-const LinearChart = () => {
-  const { countriesData, error, loading } = useGetCountries();
-  console.log("🚀 ~ countriesData:", countriesData);
+const PieChart = () => {
+  // const { countriesData, error, loading } = useGetCountries();
+  // console.log("🚀 ~ countriesData:", countriesData);
 
-  return <div>LinearChart</div>;
+  return <div>PieChart</div>;
 };
 
-export default LinearChart;
+export default PieChart;
