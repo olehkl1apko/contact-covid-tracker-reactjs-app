@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ICountryCovidStats } from "@/modules/interfaces";
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
-
 export const useGetCountries = () => {
   const [countriesData, setCountriesData] = useState<
     ICountryCovidStats[] | null
   >(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,8 +15,12 @@ export const useGetCountries = () => {
         setLoading(true);
         const { data } = await axios.get("/countries");
         setCountriesData(data);
-      } catch (error: any) {
-        setError(error);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error);
+        } else {
+          setError(new Error("An unexpected error occurred."));
+        }
       } finally {
         setLoading(false);
       }

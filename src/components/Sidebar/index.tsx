@@ -21,7 +21,7 @@ export const Sidebar: FC = () => {
 
   return (
     <div
-      className={`flex flex-col gap-10 h-full py-4 justify-center items-center ${
+      className={`flex flex-col gap-10 h-full py-4 justify-center items-center bg-slate-100 ${
         isSidebarOpen ? "w-[250px]" : "w-[70px]"
       }`}
     >
@@ -34,11 +34,11 @@ export const Sidebar: FC = () => {
             <RightOutlined style={{ fontSize: "24px" }} />
           )
         }
-        className="w-10 h-10 !border-none"
+        className="w-10 h-10 !border-none bg-inherit !shadow-md"
       />
       <Menu
         mode="vertical"
-        className="h-full rounded-none !border-none flex flex-col gap-5 text-xl font-medium"
+        className="h-full rounded-none !border-none flex flex-col gap-5 text-xl font-medium bg-inherit"
         onClick={(item) => navigate(item.key)}
         selectedKeys={[selectedKeys]}
         items={isSidebarOpen ? menuItems : menuItemsShort}

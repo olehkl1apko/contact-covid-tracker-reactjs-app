@@ -15,14 +15,14 @@ export interface IContact {
   healthStatus: HealthStatus;
 }
 
-interface IDateData {
+interface ICovidData {
   [date: string]: number;
 }
 
-export interface ICovidData {
-  cases: IDateData;
-  deaths: IDateData;
-  recovered: IDateData;
+export interface IHistoricalCovidData {
+  cases: ICovidData;
+  deaths: ICovidData;
+  recovered: ICovidData;
 }
 
 export interface IGlobalCovidStats {
