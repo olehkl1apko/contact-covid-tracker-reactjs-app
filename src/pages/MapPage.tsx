@@ -4,12 +4,12 @@ import ErrorPage from "./ErrorPage";
 import { Loader } from "@/components/Loader";
 
 const MapPage = () => {
-  const { countriesData, error, loading } = useGetCountries();
+  const { data, error, isLoading } = useGetCountries();
 
   if (error) return <ErrorPage />;
-  if (loading) return <Loader />;
+  if (isLoading) return <Loader />;
 
-  return <Map countryStats={countriesData || []} />;
+  return <Map countryStats={data || []} />;
 };
 
 export default MapPage;

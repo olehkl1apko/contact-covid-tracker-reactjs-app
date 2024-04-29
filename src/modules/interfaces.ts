@@ -53,12 +53,12 @@ export interface ICountryCovidStats {
   updated: number; // Час останнього оновлення даних у мілісекундах
   country: string; // Назва країни
   countryInfo: {
-    _id: number; // Унікальний ідентифікатор країни
-    iso2: string; // ISO код країни (2-символьний)
-    iso3: string; // ISO код країни (3-символьний)
-    lat: number; // Географічна широта
-    long: number; // Географічна довгота
-    flag: string; // URL прапора країни
+    _id: number | null; // Унікальний ідентифікатор країни
+    iso2: string | null; // ISO код країни (2-символьний)
+    iso3: string | null; // ISO код країни (3-символьний)
+    lat: number | null; // Географічна широта
+    long: number | null; // Географічна довгота
+    flag: string | null; // URL прапора країни
   };
   cases: number; // Загальна кількість випадків захворювання
   todayCases: number; // Кількість випадків захворювання за сьогодні

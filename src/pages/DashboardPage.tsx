@@ -5,19 +5,17 @@ import ErrorPage from "./ErrorPage";
 import { Loader } from "@/components/Loader";
 
 const DashboardPage = () => {
-  const { globalData, error, loading } = useGetGlobalStats();
+  const { data, error, isLoading } = useGetGlobalStats();
 
   if (error) return <ErrorPage />;
-  if (loading) return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="flex flex-col gap-8">
-      {globalData && (
-        <div className="flex flex-wrap gap-10 justify-center">
-          <GlobalStats data={globalData} />
-          <PieChartCmp data={globalData} />
-        </div>
-      )}
+      <div className="flex flex-wrap gap-10 justify-center">
+        <GlobalStats data={data} />
+        <PieChartCmp data={data} />
+      </div>
       <LinearChart />
     </div>
   );

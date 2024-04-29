@@ -15,19 +15,17 @@ import ErrorPage from "@/pages/ErrorPage";
 import { Loader } from "../Loader";
 
 const CovidLineChart: FC = () => {
-  const { historicalData, error, loading } = useGetHistoricalStats();
+  const { data, error, isLoading } = useGetHistoricalStats();
 
-  const transformedData = historicalData
-    ? Object.keys(historicalData.cases).map((date) => ({
-        date,
-        cases: historicalData.cases[date],
-        deaths: historicalData.deaths[date],
-        recovered: historicalData.recovered[date],
-      }))
-    : [];
+  const transformedData = Object.keys(data.cases).map((date) => ({
+    date,
+    cases: data.cases[date],
+    deaths: data.deaths[date],
+    recovered: data.recovered[date],
+  }));
 
   if (error) return <ErrorPage />;
-  if (loading) return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <>

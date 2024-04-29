@@ -1,34 +1,15 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { IHistoricalCovidData } from "@/modules/interfaces";
+import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 
-export const useGetHistoricalStats = () => {
-  const [historicalData, setHistoricalData] =
-    useState<IHistoricalCovidData | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState(true);
+import { APIClient } from "@/components/api";
+import historicalStats from "@/data/historicalStats.json";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get("/historical/all?lastdays=all");
-        setHistoricalData(data);
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error);
-        } else {
-          setError(new Error("An unexpected error occurred."));
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
+const apiClient = new APIClient();
 
-    fetchData();
-
-    return () => {};
-  }, []);
-
-  return { historicalData, error, loading };
-};
+export const useGetHistoricalStats = () =>
+  useQuery({
+    queryKey: ["historicalStats"],
+    queryFn: apiClient.getHistoricalCovidData,
+    staleTime: ms("24h"),
+    initialData: historicalStats,
+  });

@@ -1,35 +1,15 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { ICountryCovidStats } from "@/modules/interfaces";
+import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 
-export const useGetCountries = () => {
-  const [countriesData, setCountriesData] = useState<
-    ICountryCovidStats[] | null
-  >(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState(true);
+import { APIClient } from "@/components/api";
+import countries from "@/data/countryStats.json";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get("/countries");
-        setCountriesData(data);
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error);
-        } else {
-          setError(new Error("An unexpected error occurred."));
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
+const apiClient = new APIClient();
 
-    fetchData();
-
-    return () => {};
-  }, []);
-
-  return { countriesData, error, loading };
-};
+export const useGetCountries = () =>
+  useQuery({
+    queryKey: ["countries"],
+    queryFn: apiClient.getCountryCovidStats,
+    staleTime: ms("24h"),
+    initialData: countries,
+  });
