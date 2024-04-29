@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 
-import { APIClient } from "@/components/api";
+import { APIClient } from "@/api";
 import countries from "@/data/countryStats.json";
 
 const apiClient = new APIClient();
