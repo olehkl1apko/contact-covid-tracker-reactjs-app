@@ -32,7 +32,9 @@ const ContactForm: FC = () => {
   };
 
   const handleSubmit = (values: IContact) => {
-    dispatch(addContact(values));
+    const id = String(Math.floor(Math.random() * 1000));
+
+    dispatch(addContact({ ...values, id }));
     form.setFieldsValue({
       firstName: "",
       lastName: "",
